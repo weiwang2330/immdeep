@@ -1,0 +1,404 @@
+Double or Nothing: Multiplicative Incentive Mechanisms for Crowdsourcing
+Learning with Symmetric Label Noise: The Importance of Being Unhinged
+Algorithmic Stability and Uniform Generalization
+Adaptive Low-Complexity Sequential Inference for Dirichlet Process Mixture Models
+Covariance-Controlled Adaptive Langevin Thermostat for Large-Scale Bayesian Sampling
+Robust Portfolio Optimization
+Logarithmic Time Online Multiclass prediction
+Planar Ultrametrics for Image Segmentation
+Expressing an Image Stream with a Sequence of Natural Sentences
+Parallel Correlation Clustering on Big Graphs
+Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks
+Space-Time Local Embeddings
+A Convergent Gradient Descent Algorithm for Rank Minimization and Semidefinite Programming from Random Linear Measurements
+Smooth Interactive Submodular Set Cover
+Galileo: Perceiving Physical Object Properties by Integrating a Physics Engine with Deep Learning
+On the Pseudo-Dimension of Nearly Optimal Auctions
+Unlocking neural population non-stationarities using hierarchical dynamics models
+Bayesian Manifold Learning: The Locally Linear Latent Variable Model (LL-LVM)
+Color Constancy by Learning to Predict Chromaticity from Luminance
+Fast and Accurate Inference of Plackettâ€“Luce Models
+Probabilistic Line Searches for Stochastic Optimization
+Inferring Algorithmic Patterns with Stack-Augmented Recurrent Nets
+Where are they looking?
+The Pareto Regret Frontier for Bandits
+On the Limitation of Spectral Methods: From the Gaussian Hidden Clique Problem to Rank-One Perturbations of Gaussian Tensors
+Measuring Sample Quality with Stein's Method
+Bidirectional Recurrent Convolutional Networks for Multi-Frame Super-Resolution
+Bounding errors of Expectation-Propagation
+A fast, universal algorithm to learn parametric nonlinear embeddings
+Texture Synthesis Using Convolutional Neural Networks
+Extending Gossip Algorithms to Distributed Estimation of U-statistics
+Streaming, Distributed Variational Inference for Bayesian Nonparametrics
+Learning visual biases from human imagination
+Smooth and Strong: MAP Inference with Linear Convergence
+Copeland Dueling Bandits
+Optimal Ridge Detection using Coverage Risk
+Top-k Multiclass SVM
+Policy Evaluation Using the Î©-Return
+Orthogonal NMF through Subspace Exploration
+Stochastic Online Greedy Learning with Semi-bandit Feedbacks
+Deeply Learning the Messages in Message Passing Inference
+Synaptic Sampling: A Bayesian Approach to Neural Network Plasticity and Rewiring
+Accelerated Proximal Gradient Methods for Nonconvex Programming
+Approximating Sparse PCA from Incomplete Data
+Nonparametric von Mises Estimators for Entropies, Divergences and Mutual Informations
+Column Selection via Adaptive Sampling
+HONOR: Hybrid Optimization for NOn-convex Regularized problems
+3D Object Proposals for Accurate Object Class Detection
+Algorithms with Logarithmic or Sublinear Regret for  Constrained Contextual Bandits
+Tensorizing Neural Networks
+Parallelizing MCMC with Random Partition Trees
+A Reduced-Dimension fMRI Shared Response Model
+Spectral Learning of Large Structured HMMs for Comparative Epigenomics
+Individual Planning in Infinite-Horizon Multiagent Settings: Inference, Structure and Scalability
+Estimating Mixture Models via Mixtures of Polynomials
+On the Global Linear Convergence of Frank-Wolfe Optimization Variants
+Deep Knowledge Tracing
+Rethinking LDA: Moment Matching for Discrete ICA
+Efficient Compressive Phase Retrieval with Constrained Sensing Vectors
+Barrier Frank-Wolfe for Marginal Inference
+Learning Theory and Algorithms for Forecasting Non-stationary Time Series
+Compressive spectral embedding: sidestepping the SVD
+A Nonconvex Optimization Framework for Low Rank Matrix Estimation
+Automatic Variational Inference in Stan
+Attention-Based Models for Speech Recognition
+Closed-form Estimators for High-dimensional Generalized Linear Models
+Online F-Measure Optimization
+Online Rank Elicitation for Plackett-Luce: A Dueling Bandits Approach
+M-Best-Diverse Labelings for Submodular Energies and Beyond
+Tractable Bayesian Network Structure Learning with Bounded Vertex Cover Number
+Learning Large-Scale Poisson DAG Models based on OverDispersion Scoring
+Training Restricted Boltzmann Machine via the ï¿¼Thouless-Anderson-Palmer free energy
+Character-level Convolutional Networks for Text Classification
+Robust Feature-Sample Linear Discriminant Analysis for Brain Disorders Diagnosis
+Black-box optimization of noisy functions with unknown smoothness
+Recovering Communities in the General Stochastic Block Model Without Knowing the Parameters
+Deep learning with Elastic Averaging SGD
+Monotone k-Submodular Function Maximization with Size Constraints
+Active Learning from Weak and Strong Labelers
+On the Optimality of Classifier Chain for Multi-label Classification
+Robust Regression via Hard Thresholding
+Sparse Local Embeddings for Extreme Multi-label Classification
+Solving Random Quadratic Systems of Equations Is Nearly as Easy as Solving Linear Systems
+A Framework for Individualizing Predictions of Disease Trajectories by Exploiting Multi-Resolution Structure
+Subspace Clustering with Irrelevant Features via Robust Dantzig Selector
+Sparse PCA via Bipartite Matchings
+Fast Randomized Kernel Ridge Regression with Statistical Guarantees
+Online Learning for Adversaries with Memory: Price of Past Mistakes
+Convolutional spike-triggered covariance analysis for neural subunit models
+Convolutional LSTM Network: A Machine Learning Approach for Precipitation Nowcasting
+GAP Safe screening rules for sparse multi-task and multi-class models
+Empirical Localization of Homogeneous Divergences on Discrete Sample Spaces
+Statistical Model Criticism using Kernel Two Sample Tests
+Precision-Recall-Gain Curves: PR Analysis Done Right
+A Generalization of Submodular Cover via the Diminishing Return Property on the Integer Lattice
+Bidirectional Recurrent Neural Networks as Generative Models
+Quartz: Randomized Dual Coordinate Ascent with Arbitrary Sampling
+Maximum Likelihood Learning With Arbitrary Treewidth via Fast-Mixing Parameter Sets
+Hessian-free Optimization for Learning Deep Multidimensional Recurrent Neural Networks
+Large-scale probabilistic predictors with and without guarantees of validity
+Shepard Convolutional Neural Networks
+Matrix Manifold Optimization for Gaussian Mixtures
+Semi-supervised Convolutional Neural Networks for Text Categorization via Region Embedding
+Parallel Recursive Best-First AND/OR Search for Exact MAP Inference in Graphical Models
+Convolutional Neural Networks with Intra-Layer Recurrent Connections for Scene Labeling
+Bounding the Cost of Search-Based Lifted Inference
+Gradient-free Hamiltonian Monte Carlo with Efficient Kernel Exponential Families
+Linear Multi-Resource Allocation with Semi-Bandit Feedback
+Unsupervised Learning by Program Synthesis
+Enforcing balance allows local supervised learning in spiking recurrent networks
+Fast and Guaranteed Tensor Decomposition via Sketching
+Differentially private subspace clustering
+Predtron: A Family of Online Algorithms for General Prediction Problems
+Weighted Theta Functions and Embeddings with Applications to Max-Cut, Clustering and Summarization
+SGD Algorithms based on Incomplete U-statistics: Large-Scale Minimization of Empirical Risk
+On Top-k Selection in Multi-Armed Bandits and Hidden Bipartite Graphs
+The Brain Uses Reliability of Stimulus Information when Making Perceptual Decisions
+Fast Classification Rates for High-dimensional Gaussian Generative Models
+Fast Distributed k-Center Clustering with Outliers on Massive Data
+Human Memory Search as Initial-Visit Emitting Random Walk
+Non-convex Statistical Optimization for Sparse Tensor Graphical Model
+Convergence Rates of Active Learning for Maximum Likelihood Estimation
+Weakly-supervised Disentangling with Recurrent Transformations for 3D View Synthesis
+Efficient Exact Gradient Update for training Deep Networks with Very Large Sparse Targets
+Backpropagation for Energy-Efficient Neuromorphic Computing
+Alternating Minimization for Regression Problems with Vector-valued Outputs
+Learning both Weights and Connections for Efficient Neural Network
+Optimal Rates for Random Fourier Features
+The Population Posterior and Bayesian Modeling on Streams
+Frank-Wolfe Bayesian Quadrature: Probabilistic Integration with Theoretical Guarantees
+Scheduled Sampling for Sequence Prediction with Recurrent Neural Networks
+Unified View of Matrix Completion under General Structural Constraints
+Efficient Output Kernel Learning for Multiple Tasks
+Scalable Adaptation of State Complexity for Nonparametric Hidden Markov Models
+Variational Consensus Monte Carlo
+Newton-Stein Method: A Second Order Method for GLMs via Stein's Lemma
+Practical and Optimal LSH for Angular Distance
+Learning to Linearize Under Uncertainty
+Finite-Time Analysis of Projected Langevin Monte Carlo
+Deep Visual Analogy-Making
+Matrix Completion from Fewer Entries: Spectral Detectability and Rank Estimation
+Online Learning with Adversarial Delays
+Multi-Layer Feature Reduction for Tree Structured Group Lasso via Hierarchical Projection
+Minimum Weight Perfect Matching via Blossom Belief Propagation
+Efficient Thompson Sampling for Online ï¿¼Matrix-Factorization Recommendation
+Improved Iteration Complexity Bounds of Cyclic Block Coordinate Descent for Convex Problems
+Lifted Symmetry Detection and Breaking for MAP Inference
+Evaluating the statistical significance of biclusters
+Discriminative Robust Transformation Learning
+Bandits with Unobserved Confounders: A Causal Approach
+Scalable Semi-Supervised Aggregation of Classifiers
+Online Learning with Gaussian Payoffs and Side Observations
+Private Graphon Estimation for Sparse Graphs
+SubmodBoxes: Near-Optimal Search for a Set of Diverse Object Proposals
+Fast Second Order Stochastic Backpropagation for Variational Inference
+Randomized Block Krylov Methods for Stronger and Faster Approximate Singular Value Decomposition
+Cross-Domain Matching for Bag-of-Words Data via Kernel Embeddings of Latent Distributions
+Scalable Inference for Gaussian Process Models with Black-Box Likelihoods
+Fast Bidirectional Probability Estimation in Markov Models
+Probabilistic Variational Bounds for Graphical Models
+Linear Response Methods for Accurate Covariance Estimates from Mean Field Variational Bayes
+Combinatorial Cascading Bandits
+Mixing Time Estimation in Reversible Markov Chains from a Single Sample Path
+Policy Gradient for Coherent Risk Measures
+Fast Rates for Exp-concave Empirical Risk Minimization
+Deep Generative Image Models using a ï¿¼Laplacian Pyramid of Adversarial Networks
+Decoupled Deep Neural Network for Semi-supervised Semantic Segmentation
+Equilibrated adaptive learning rates for non-convex optimization
+BACKSHIFT: Learning causal cyclic graphs from unknown shift interventions
+Risk-Sensitive and Robust Decision-Making: a CVaR Optimization Approach
+Asynchronous stochastic convex optimization: the noise is in the noise and SGD don't care
+Lifelong Learning with Non-i.i.d. Tasks
+Optimal Linear Estimation under Unknown Nonlinear Transform
+Learning with Group Invariant Features: A Kernel Perspective.
+Regularized EM Algorithms: A Unified Framework and Statistical Guarantees
+Adaptive Stochastic Optimization: From Sets to Paths
+Beyond Convexity: Stochastic Quasi-Convex Optimization
+A Tractable Approximation to Optimal Point Process Filtering: Application to Neural Encoding
+Sum-of-Squares Lower Bounds for Sparse PCA
+Max-Margin Majority Voting for Learning from Crowds
+Learning with Incremental Iterative Regularization
+Halting in Random Walk Kernels
+MCMC for Variationally Sparse Gaussian Processes
+Less is More: NystrÃ¶m Computational Regularization
+Infinite Factorial Dynamical Model
+Regularization Path of Cross-Validation Error Lower Bounds
+Attractor Network Dynamics Enable Preplay and Rapid Path Planning in Mazeâ€“like Environments
+Teaching Machines to Read and Comprehend
+Principal Differences Analysis: Interpretable Characterization of Differences between Distributions
+When are Kalman-Filter Restless Bandits Indexable?
+Segregated Graphs and Marginals of Chain Graph Models
+Efficient Non-greedy Optimization of Decision Trees
+Probabilistic Curve Learning: Coulomb Repulsion and the Electrostatic Gaussian Process
+Inverse Reinforcement Learning with Locally Consistent Reward Functions
+Communication Complexity of Distributed Convex Learning and Optimization
+End-to-end Learning of LDA by Mirror-Descent Back Propagation over a Deep Architecture
+Subset Selection by Pareto Optimization
+On the Accuracy of Self-Normalized Log-Linear Models
+Regret Lower Bound and Optimal Algorithm in Finite Stochastic Partial Monitoring
+Is Approval Voting Optimal Given Approval Votes?
+Regressive Virtual Metric Learning
+Analysis of Robust PCA via Local Incoherence
+Learning to Transduce with Unbounded Memory
+Max-Margin Deep Generative Models
+Spherical Random Features for Polynomial Kernels
+Rectified Factor Networks
+Learning Bayesian Networks with Thousands of Variables
+Matrix Completion Under Monotonic Single Index Models
+Visalogy: Answering Visual Analogy Questions
+Tree-Guided MCMC Inference for Normalized Random Measure Mixture Models
+Streaming Min-max Hypergraph Partitioning
+Collaboratively Learning Preferences from Ordinal Data
+Biologically Inspired Dynamic Textures for Probing Motion Perception
+Generative Image Modeling Using Spatial LSTMs
+Robust PCA with compressed data
+Sampling from Probabilistic Submodular Models
+COEVOLVE: A Joint Point Process Model for Information Diffusion and Network Co-evolution
+Supervised Learning for Dynamical System Learning
+Regret-Based Pruning in Extensive-Form Games
+Fast Two-Sample Testing with Analytic Representations of Probability Measures
+Learning to Segment Object Candidates
+GP Kernels for Cross-Spectrum Analysis
+Secure Multi-party Differential Privacy
+Spatial Transformer Networks
+Anytime Influence Bounds and the Explosive Behavior of Continuous-Time Diffusion Networks
+Multi-class SVMs: From Tighter Data-Dependent Generalization Bounds to Novel Algorithms
+High-dimensional neural spike train analysis with generalized count linear dynamical systems
+Learning with a Wasserstein Loss
+b-bit Marginal Regression
+Natural Neural Networks
+Optimization Monte Carlo: Efficient and Embarrassingly Parallel Likelihood-Free Inference
+Adaptive Primal-Dual Splitting Methods for Statistical Learning and Image Processing
+On some provably correct cases of variational inference for topic models
+Collaborative Filtering with Graph Information: Consistency and Scalable Methods
+Combinatorial Bandits Revisited
+Variational Information Maximisation for Intrinsically Motivated Reinforcement Learning
+A Structural Smoothing Framework For Robust Graph Comparison
+Competitive Distribution Estimation: Why is Good-Turing Good
+Efficient Learning by Directed Acyclic Graph For Resource Constrained Prediction
+A hybrid sampler for Poisson-Kingman mixture models
+An Active Learning Framework using Sparse-Graph Codes for Sparse Polynomials and Graph Sketching
+Local Smoothness in Variance Reduced Optimization
+Saliency, Scale and Information: Towards a Unifying Theory
+Fighting Bandits with a New Kind of Smoothness
+Beyond Sub-Gaussian Measurements: High-Dimensional Structured Estimation with Sub-Exponential Designs
+Spectral Norm Regularization of Orthonormal Representations for Graph Transduction
+Convolutional Networks on Graphs for Learning Molecular Fingerprints
+Mixed Robust/Average Submodular Partitioning: Fast Algorithms, Guarantees, and Applications
+Tractable Learning for Complex Probability Queries
+StopWasting My Gradients: Practical SVRG
+Mind the Gap: A Generative Approach to Interpretable Feature Selection and Extraction
+A Normative Theory of Adaptive Dimensionality Reduction in Neural Networks
+On the Convergence of Stochastic Gradient MCMC Algorithms with High-Order Integrators
+Learning structured densities via infinite dimensional exponential families
+Are You Talking to a Machine? Dataset and Methods for Multilingual Image Question
+Variance Reduced Stochastic Gradient Descent with Neighbors
+Sample Efficient Path Integral Control under Uncertainty
+Stochastic Expectation Propagation
+Exactness of Approximate MAP Inference in Continuous MRFs
+Scale Up Nonlinear Component Analysis with Doubly Stochastic Gradients
+Generalization in Adaptive Data Analysis and Holdout Reuse
+Market Scoring Rules Act As Opinion Pools For Risk-Averse Agents
+Sparse Linear Programming via Primal and Dual Augmented Coordinate Descent
+Training Very Deep Networks
+Bayesian Active Model Selection with an Application to Automated Audiometry
+Particle Gibbs for Infinite Hidden Markov Models
+Learning spatiotemporal trajectories from manifold-valued longitudinal data
+A Bayesian Framework for Modeling Confidence in Perceptual Decision Making
+Path-SGD: Path-Normalized Optimization in Deep Neural Networks
+On the consistency theory of high dimensional variable screening
+End-To-End Memory Networks
+Spectral Representations for Convolutional Neural Networks
+Online Gradient Boosting
+Deep Temporal Sigmoid Belief Networks for Sequence Modeling
+Recognizing retinal ganglion cells in the dark
+A Theory of Decision Making Under Dynamic Context
+A Gaussian Process Model of Quasar Spectral Energy Distributions
+Hidden Technical Debt in Machine Learning Systems
+Local Causal Discovery of Direct Causes and Effects
+High Dimensional EM Algorithm: Statistical Optimization and Asymptotic Normality
+Revenue Optimization against Strategic Buyers
+Deep Convolutional Inverse Graphics Network
+Sparse and Low-Rank Tensor Decomposition
+Minimax Time Series Prediction
+Differentially Private Learning of Structured Discrete Distributions
+Sample Complexity of Learning Mahalanobis Distance Metrics
+Learning Wake-Sleep Recurrent Attention Models
+Robust Gaussian Graphical Modeling with the Trimmed Graphical Lasso
+Testing Closeness With Unequal Sized Samples
+Estimating Jaccard Index with Missing Observations: A Matrix Calibration Approach
+Neural Adaptive Sequential Monte Carlo
+Local Expectation Gradients for Black Box Variational Inference
+On Variance Reduction in Stochastic Gradient Descent and its Asynchronous Variants
+NEXT: A System for Real-World Development, Evaluation, and Application of Active Learning
+Super-Resolution Off the Grid
+Taming the Wild: A Unified Analysis of Hogwild-Style Algorithms
+The Return of the Gating Network: Combining Generative Models and Discriminative Training in Natural Image Priors
+Pointer Networks
+Associative Memory via a Sparse Recovery Model
+Robust Spectral Inference for Joint Stochastic Matrix Factorization
+Fast, Provable Algorithms for Isotonic Regression in all L_p-norms
+Adversarial Prediction Games for Multivariate Losses
+Asynchronous Parallel Stochastic Gradient for Nonconvex Optimization
+Embed to Control: A Locally Linear Latent Dynamics Model for Control from Raw Images
+Efficient and Parsimonious Agnostic Active Learning
+Softstar: Heuristic-Guided Probabilistic Inference
+Grammar as a Foreign Language
+Regularization-Free Estimation in Trace Regression with Symmetric Positive Semidefinite Matrices
+Winner-Take-All Autoencoders
+Deep Poisson Factor Modeling
+Bayesian Optimization with Exponential Convergence
+Sample Complexity of Episodic Fixed-Horizon Reinforcement Learning
+Learning with Relaxed Supervision
+Subsampled Power Iteration: a Unified Algorithm for Block Models and Planted CSP's
+Accelerated Mirror Descent in Continuous and Discrete Time
+The Human Kernel
+Action-Conditional Video Prediction using Deep Networks in Atari Games
+A Pseudo-Euclidean Iteration for Optimal Recovery in Noisy ICA
+Distributed Submodular Cover: Succinctly Summarizing Massive Data
+Community Detection via Measure Space Embedding
+Basis refinement strategies for linear value function approximation in MDPs
+Structured Estimation with Atomic Norms: General Bounds and Applications
+A Complete Recipe for Stochastic Gradient MCMC
+Bandit Smooth Convex Optimization: Improving the Bias-Variance Tradeoff
+Online Prediction at the Limit of Zero Temperature
+Learning Continuous Control Policies by Stochastic Value Gradients
+Exploring Models and Data for Image Question Answering
+Efficient and Robust Automated Machine Learning
+Preconditioned Spectral Descent for Deep Learning
+A Recurrent Latent Variable Model for Sequential Data
+Fast Convergence of Regularized Learning in Games
+Parallel Multi-Dimensional LSTM, With Application to Fast Biomedical Volumetric Image Segmentation
+Reflection, Refraction, and Hamiltonian Monte Carlo
+The Consistency of Common Neighbors for Link Prediction in Stochastic Blockmodels
+Nearly Optimal Private LASSO
+Convergence Analysis of Prediction Markets via Randomized Subspace Descent
+The Poisson Gamma Belief Network
+Convergence rates of sub-sampled Newton methods
+No-Regret Learning in Bayesian Games
+Statistical Topological Data Analysis - A Kernel Perspective
+Semi-supervised Sequence Learning
+Structured Transforms for Small-Footprint Deep Learning
+Rapidly Mixing Gibbs Sampling for a Class of Factor Graphs Using Hierarchy Width
+Interpolating Convex and Non-Convex Tensor Decompositions via the Subspace Norm
+Sample Complexity Bounds for Iterative Stochastic Policy Optimization
+BinaryConnect: Training Deep Neural Networks with binary weights during propagations
+Interactive Control of Diverse Complex Characters with Neural Networks
+Submodular Hamming Metrics
+A Universal Primal-Dual Convex Optimization Framework
+Learning From Small Samples: An Analysis of Simple Decision Heuristics
+Explore no more: Improved high-probability regret bounds for non-stochastic bandits
+Fast and Memory Optimal Low-Rank Matrix Approximation
+Learnability of Influence in Networks
+Learning Causal Graphs with Small Interventions
+Information-theoretic lower bounds for convex optimization with erroneous oracles
+Fixed-Length Poisson MRF: Adding Dependencies to the Multinomial
+Large-Scale Bayesian Multi-Label Learning via Topic-Based Label Embeddings
+The Self-Normalized Estimator for Counterfactual Learning
+Fast Lifted MAP Inference via Partitioning
+Data Generation as Sequential Decision Making
+On Elicitation Complexity
+Decomposition Bounds for Marginal MAP
+Discrete RÃ©nyi Classifiers
+A class of network models recoverable by spectral clustering
+Skip-Thought Vectors
+Rate-Agnostic (Causal) Structure Learning
+Principal Geodesic Analysis for Probability Measures under the Optimal Transport Metric
+Consistent Multilabel Classification
+Parallel Predictive Entropy Search for Batch Global Optimization of Expensive Objective Functions
+Cornering Stationary and Restless Mixing Bandits with Remix-UCB
+Semi-Supervised Factored Logistic Regression for High-Dimensional Neuroimaging Data
+Gaussian Process Random Fields
+M-Statistic for Kernel Change-Point Detection
+Adaptive Online Learning
+A Universal Catalyst for First-Order Optimization
+Inference for determinantal point processes without spectral knowledge
+Kullback-Leibler Proximal Variational Inference
+Semi-Proximal Mirror-Prox for Nonsmooth Composite Minimization
+LASSO with Non-linear Measurements is Equivalent to One With Linear Measurements
+From random walks to distances on unweighted graphs
+Bayesian dark knowledge
+Matrix Completion with Noisy Side Information
+Dependent Multinomial Models Made Easy: Stick-Breaking with the Polya-gamma Augmentation
+On-the-Job Learning with Bayesian Decision Theory
+Calibrated Structured Prediction
+Learning Structured Output Representation using Deep Conditional Generative Models
+Time-Sensitive Recommendation From Recurrent User Activities
+Learning Stationary Time Series using Gaussian Processes with Nonparametric Kernels
+A Market Framework for Eliciting Private Data
+Lifted Inference Rules With Constraints
+Gradient Estimation Using Stochastic Computation Graphs
+Model-Based Relative Entropy Stochastic Search
+Semi-supervised Learning with Ladder Networks
+Embedding Inference for Structured Multilabel Prediction
+Copula variational inference
+Recursive Training of 2D-3D Convolutional Networks for Neuronal Boundary Prediction
+A Dual Augmented Block Minimization Framework for Learning with Limited Memory
+Optimal Testing for Properties of Distributions
+Efficient Learning of Continuous-Time Hidden Markov Models for Disease Progression
+Expectation Particle Belief Propagation
+Latent Bayesian melding for integrating individual and population models
+Distributionally Robust Logistic Regression
+Variational Dropout and the Local Reparameterization Trick
+
