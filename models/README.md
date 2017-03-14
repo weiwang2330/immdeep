@@ -2,16 +2,18 @@
 
 ## Contents
 
-- One-way LSTM
+- LSTM
 
-- One-way LSTM with receptors with small proportions
+- LSTM with receptors with small proportions
 
-- One-way LSTM with receptors with small proportions, weighted
+- LSTM with receptors with small proportions, weighted
 
-- One-way LSTM with 256 hidden nodes with receptors with small proportions, weighted
+- LSTM with 256 hidden nodes with receptors with small proportions, weighted
+
+- LSTM with receptors with small proportions, weighted v2
 
 
-## One-way LSTM
+## LSTM
 
 Model: LSTM on the first 30K data
 
@@ -47,9 +49,9 @@ I'm pretty sure that such narrowing is due to the very heavy tail of receptors w
 almost identical proportions (~ 11.8 in neg-log-scale).
 
 
-## One-way LSTM with receptors with small proportions
+## LSTM with receptors with small proportions
 
-Model: LSTM at each step trained on ~100 receptors with “big” proportions (count >= 4), and ~28 receptors with “small” proportions (count < 3); all of them randomly sampled from the input data.
+Model: LSTM at each step trained on ~100 receptors with “big” proportions (count >= 10), and ~28 receptors with “small” proportions (count < 10); all of them randomly sampled from the input data.
 
 File: models/model.lstm128.bn.dense.mix.hdf5
 
@@ -104,7 +106,7 @@ Predict small proportions:
 ```
 
 
-## One-way LSTM with receptors with small proportions, weighted
+## LSTM with receptors with small proportions, weighted
 
 Model: same as the previous one, but every receptor has a weight equal to it's count in the experimental data.
 
@@ -160,13 +162,13 @@ Predict small proportions:
 ```
 
 
-## One-way LSTM with 256 hidden nodes with receptors with small proportions, weighted
+## LSTM with 256 hidden nodes with receptors with small proportions, weighted
 
 Model: same as the previous one, but with 256 hidden nodes.
 
-After 673 iterations:
+After ~ 200 iterations:
 ```
-loss: 128.2314
+loss: ~130
 
 Predict big proportions:
   real    pred
@@ -214,3 +216,7 @@ Predict small proportions:
  [ 11.09821841   8.93610191]
  [ 11.09821841   9.20418262]]
 ```
+
+
+## LSTM with receptors with small proportions, weighted v2
+
