@@ -1,7 +1,7 @@
 from __future__ import print_function
 from keras.models import Sequential, load_model
 from keras.layers import Dense, Activation, Dropout
-from keras.layers import LSTM, GRU
+from keras.layers import LSTM, GRU, Bidirectional
 from keras.layers.normalization import BatchNormalization
 from keras.regularizers import ActivityRegularizer
 from keras.optimizers import RMSprop
@@ -69,11 +69,15 @@ indices_char = dict((i, c) for i, c in enumerate(chars))
 #max_len = max(max([len(x) for x in R_exp]), max([len(x) for x in R_gen]))
 max_len = max([len(x) for x in R_exp_seq])
 
-logic_big = R_exp_data["Umi.count"] >= 4
-logic_small = R_exp_data["Umi.count"] < 4
-X_big, y_big = vectorize(R_exp_seq[logic_big], R_exp_prop[logic_big], max_len, chars)
+logic_big   = R_exp_data["Umi.count"] >= 10
+logic_small = R_exp_data["Umi.count"] < 10
+print("Big:\t", logic_big.sum(), ";\tsmall:\t", logic_small.sum())
+
+X_big, y_big     = vectorize(R_exp_seq[logic_big], R_exp_prop[logic_big], max_len, chars)
 X_small, y_small = vectorize(R_exp_seq[logic_small], R_exp_prop[logic_small], max_len, chars)
 
+weights_big   = R_exp_data["Umi.count"][logic_big].reshape(y_big.shape)  # equal to the difference in Umi.counts
+weights_small = R_exp_data["Umi.count"][logic_small].reshape(y_small.shape)
         
 ###################
 # Build the model #
@@ -86,7 +90,7 @@ else:
     model = Sequential()
     # Dropouts + BN works quite well. Without dropouts the learning process is faster
     # but I'm quite sure that this is due to the overtraining.
-    model.add(LSTM(128, dropout_W = .2, dropout_U = .2, input_shape=(max_len, len(chars))))
+    model.add(LSTM(256, dropout_W = .2, dropout_U = .2, input_shape=(max_len, len(chars))))
     model.add(BatchNormalization())
     # Don't use L2 regularization ActivityRegularizer(l2 = .3) on the output Dense layer - 
     # it pushes the output to too strict boundaries, so the output will be always in [0,1]
@@ -114,11 +118,14 @@ def generate_batch(max_data):
         to_sample_small = max_data - to_sample_big
         indices_big   = randint(0, X_big.shape[0],   size=to_sample_big)
         indices_small = randint(0, X_small.shape[0], size=to_sample_small)
+        #print(np.hstack([y_big[indices_big], weights_big[indices_big]]))
+        #print(np.hstack([y_small[indices_small], weights_small[indices_small]]))
         yield np.vstack([X_big[indices_big], X_small[indices_small]]), \
-              np.vstack([y_big[indices_big], y_small[indices_small]])
+              np.vstack([y_big[indices_big], y_small[indices_small]]), \
+              np.vstack([weights_big[indices_big], weights_small[indices_small]]).reshape((max_data,))
 
 
-for iteration in range(1, 100):
+for iteration in range(1, 10000):
     print()
     print('-' * 50)
     print('Iteration', iteration)
@@ -131,14 +138,14 @@ for iteration in range(1, 100):
                         samples_per_epoch=1280*3, 
                         nb_epoch=6, 
                         verbose=VERBOSE, 
-                        callbacks = [ModelCheckpoint(filepath = "model." + str(iteration % 2) + ".{epoch:02d}.hdf5")])
+                        callbacks = [ModelCheckpoint(filepath = "model.lstm256." + str(iteration % 2) + ".hdf5")])
 
-    print("\nPredict big proportions:\n\treal\t\tpred")
+    print("\nPredict big proportions:\n  real\t\tpred")
     a = y_big[:20].reshape((20,1))
     b = model.predict(X_big[:20,:,:])
     print(np.hstack([a, b]), "\n")
     
-    print("Predict small proportions:\n\treal\t\tpred")
+    print("Predict small proportions:\n  real\t\tpred")
     a = y_small[:20].reshape((20,1))
     b = model.predict(X_small[:20,:,:])
     print(np.hstack([a, b]))
