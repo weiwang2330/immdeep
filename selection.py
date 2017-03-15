@@ -3,10 +3,11 @@ from keras.models import Sequential, load_model
 from keras.layers import Dense, Activation, Dropout
 from keras.layers import LSTM, GRU, Bidirectional
 from keras.layers.normalization import BatchNormalization
+from keras.layers.embeddings import Embedding
 from keras.regularizers import ActivityRegularizer
-from keras.optimizers import RMSprop
+from keras.optimizers import RMSprop, Adam, Nadam
 from keras.utils.data_utils import get_file
-from keras.callbacks import ModelCheckpoint
+from keras.callbacks import ModelCheckpoint, ReduceLROnPlateau
 import numpy as np
 from numpy.random import randint
 import random
@@ -26,6 +27,7 @@ MAX_DATA = 10000
 #theano.config.floatX="float32"
 #theano.config.device="gpu1"
 #theano.config.lib.cnmem="1."
+
 
 #################
 # Load the data #
@@ -76,21 +78,22 @@ print("Big:\t", logic_big.sum(), ";\tsmall:\t", logic_small.sum())
 X_big, y_big     = vectorize(R_exp_seq[logic_big], R_exp_prop[logic_big], max_len, chars)
 X_small, y_small = vectorize(R_exp_seq[logic_small], R_exp_prop[logic_small], max_len, chars)
 
-weights_big   = R_exp_data["Umi.count"][logic_big].reshape(y_big.shape)  # equal to the difference in Umi.counts
+weights_big   = R_exp_data["Umi.count"][logic_big].reshape(y_big.shape)
 weights_small = R_exp_data["Umi.count"][logic_small].reshape(y_small.shape)
-        
+
+
 ###################
 # Build the model #
 ###################
 
-if len(sys.argv) > 1:
-    print("Loading model:", sys.argv[1])
-    model = load_model(sys.argv[1])
+if len(sys.argv) > 2:
+    print("Loading model:", sys.argv[2])
+    model = load_model(sys.argv[2])
 else:
     model = Sequential()
     # Dropouts + BN works quite well. Without dropouts the learning process is faster
     # but I'm quite sure that this is due to the overtraining.
-    model.add(LSTM(256, dropout_W = .2, dropout_U = .2, input_shape=(max_len, len(chars))))
+    model.add(LSTM(128, dropout_W = .2, dropout_U = .2, input_shape=(max_len, len(chars))))
     model.add(BatchNormalization())
     # Don't use L2 regularization ActivityRegularizer(l2 = .3) on the output Dense layer - 
     # it pushes the output to too strict boundaries, so the output will be always in [0,1]
@@ -98,12 +101,9 @@ else:
     # Log-transorm the data and multiple by "-1" so it's possible to use ReLU instead of linear activations.
     model.add(Activation('relu'))
 
-    # Very small learning rate because with the higher rate nans start to occur.
-    optimizer = RMSprop(lr=0.000003)
-    # Use MSLE instead of MSE because in case of log transformation of our data
-    # the model will pay too much attention to optimization of differences for small
-    # receptors, which has large negative (= large absolute value) values.
-    model.compile(loss='mse', optimizer=optimizer)
+#    optimizer = Adam(lr=0.0003)
+#    optimizer = Adam(lr=0.000003)
+    model.compile(loss='mse', optimizer="nadam")
 
 
 print(model.summary())
@@ -112,17 +112,37 @@ print(model.summary())
 ###################
 # Train the model #
 ###################
-def generate_batch(max_data):
+def generate_batch_simple(max_data):
     while True:
         to_sample_big   = int(.8 * max_data)
-        to_sample_small = max_data - to_sample_big
-        indices_big   = randint(0, X_big.shape[0],   size=to_sample_big)
+        to_sample_small = max_data - to_sample_big - 30
+        indices_big   = randint(0, X_big.shape[0], size=to_sample_big)
         indices_small = randint(0, X_small.shape[0], size=to_sample_small)
-        #print(np.hstack([y_big[indices_big], weights_big[indices_big]]))
-        #print(np.hstack([y_small[indices_small], weights_small[indices_small]]))
+        yield np.vstack([X_big[indices_big], X_small[indices_small]]), \
+              np.vstack([y_big[indices_big], y_small[indices_small]])
+            
+            
+def generate_batch_weighted(max_data, step):
+    while True:
+        to_sample_big   = int(.8 * max_data)
+        to_sample_small = max_data - to_sample_big - 30
+        indices_big   = randint(0, X_big.shape[0], size=to_sample_big)
+        indices_small = randint(0, X_small.shape[0], size=to_sample_small)
         yield np.vstack([X_big[indices_big], X_small[indices_small]]), \
               np.vstack([y_big[indices_big], y_small[indices_small]]), \
               np.vstack([weights_big[indices_big], weights_small[indices_small]]).reshape((max_data,))
+
+                
+#def generate_batch_fading(max_data, step):
+def generate_batch(max_data, step):
+    while True:
+        to_sample_big   = int(.8 * max_data) - 30
+        to_sample_small = max_data - to_sample_big - 30
+        indices_big   = np.concatenate([np.array(range(30)), randint(30, X_big.shape[0], size=to_sample_big)])
+        indices_small = randint(0, X_small.shape[0], size=to_sample_small)
+        yield np.vstack([X_big[indices_big], X_small[indices_small]]), \
+              np.vstack([y_big[indices_big], y_small[indices_small]]), \
+              np.vstack([np.exp(np.log(weights_big[indices_big].astype(np.float)) / (step ** .15)), weights_small[indices_small].astype(np.float)]).reshape((max_data,))
 
 
 for iteration in range(1, 10000):
@@ -134,11 +154,16 @@ for iteration in range(1, 10000):
 #               nb_epoch=1, 
 #               verbose=VERBOSE,
 #               callbacks = [ModelCheckpoint(filepath = "model." + str(iteration % 2) + ".{epoch:02d}.hdf5")])
-    model.fit_generator(generate_batch(128), 
+    history = model.fit_generator(generate_batch(128, iteration), 
                         samples_per_epoch=1280*3, 
                         nb_epoch=6, 
                         verbose=VERBOSE, 
-                        callbacks = [ModelCheckpoint(filepath = "model.lstm256." + str(iteration % 2) + ".hdf5")])
+                        callbacks = [ModelCheckpoint(filepath = "model." + sys.argv[1] + "." + str(iteration % 2) + ".hdf5"), 
+                                     ReduceLROnPlateau(monitor="loss", factor=0.2, patience=4, min_lr=0.00001)])
+
+    for key in history.history.keys():
+        with open("history." + key + "." + sys.argv[1] + ".txt", "a" if iteration > 1 else "w") as hist_file:
+            hist_file.writelines("\n".join(map(str, history.history[key])) + "\n")
 
     print("\nPredict big proportions:\n  real\t\tpred")
     a = y_big[:20].reshape((20,1))
@@ -146,6 +171,6 @@ for iteration in range(1, 10000):
     print(np.hstack([a, b]), "\n")
     
     print("Predict small proportions:\n  real\t\tpred")
-    a = y_small[:20].reshape((20,1))
-    b = model.predict(X_small[:20,:,:])
+    a = y_small[-20:].reshape((20,1))
+    b = model.predict(X_small[-20:,:,:])
     print(np.hstack([a, b]))
