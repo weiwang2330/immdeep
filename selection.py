@@ -165,10 +165,15 @@ if len(sys.argv) > 2:
         model.add(PReLU())
         
     elif sys.argv[2] == "gru":
-        model.add( GRU(64, kernel_initializer="he_normal", recurrent_initializer="he_normal", 
+        model.add( GRU(128, kernel_initializer="he_normal", recurrent_initializer="he_normal", 
                        implementation=2, bias_initializer="he_normal",
                        dropout=.2, recurrent_dropout=.2,
                        unroll=True, input_shape=(max_len, len(chars))))
+        model.add(PReLU())
+        model.add(BatchNormalization())
+        
+        model.add(Dense(128))
+        model.add(Dropout(.3))
         model.add(PReLU())
         model.add(BatchNormalization())
         
@@ -177,7 +182,7 @@ if len(sys.argv) > 2:
         model.add(PReLU())
         model.add(BatchNormalization())
         
-        model.add(Dense(32, dropout=.3))
+        model.add(Dense(32))
         model.add(Dropout(.3))
         model.add(PReLU())
         model.add(BatchNormalization())
@@ -238,7 +243,7 @@ def generate_batch_fading(max_data, step):
         indices_small = randint(0, X_small.shape[0], size=to_sample_small)
         yield np.vstack([X_big[indices_big], X_small[indices_small]]), \
               np.vstack([y_big[indices_big], y_small[indices_small]]), \
-              np.vstack([np.exp(np.log(weights_big[indices_big].astype(np.float)) / (step ** .2)), weights_small[indices_small].astype(np.float)]).reshape((max_data,))
+              np.vstack([np.exp(np.log(weights_big[indices_big].astype(np.float)) / (step ** .5)), weights_small[indices_small].astype(np.float)]).reshape((max_data,))
 
                 
      
@@ -260,12 +265,12 @@ if len(sys.argv) > 3:
 epoch_per_iter = 5
 for epoch in range(epoch_per_iter, EPOCHS+1, 5):
     history = model.fit_generator(generate_batch(BATCH_SIZE, epoch), 
-                        steps_per_epoch=400, 
+                        steps_per_epoch=1000, 
                         epochs=epoch, 
                         verbose=VERBOSE, 
                         initial_epoch=epoch - epoch_per_iter,
                         callbacks = [ModelCheckpoint(filepath = dir_name + "model." + str(epoch % 2) + ".hdf5"), 
-                                     ReduceLROnPlateau(monitor="loss", factor=0.2, patience=4, min_lr=0.00001)])
+                                     ReduceLROnPlateau(monitor="loss", factor=0.2, patience=3, min_lr=0.00001)])
 
     for key in history.history.keys():
         with open(dir_name + "history." + key + ".txt", "a" if epoch > epoch_per_iter else "w") as hist_file:
