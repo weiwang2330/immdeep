@@ -163,18 +163,18 @@ if len(sys.argv) > 2:
                        implementation=2, bias_initializer="he_normal",
                        dropout=.2, recurrent_dropout=.2,
                        unroll=True, input_shape=(max_len, len(chars))))
-        model.add(PReLU())
         model.add(BatchNormalization())
+        model.add(PReLU())
         
         model.add(Dense(32))
         model.add(BatchNormalization())
         model.add(PReLU())
         model.add(Dropout(.3))
         
-        model.add(Dense(32))
-        model.add(BatchNormalization())
-        model.add(PReLU())
-        model.add(Dropout(.3))
+        # model.add(Dense(32))
+        # model.add(BatchNormalization())
+        # model.add(PReLU())
+        # model.add(Dropout(.3))
         
         # model.add(Dense(32))
         # model.add(Dropout(.3))
