@@ -1,7 +1,7 @@
 from __future__ import print_function
-from keras.models import Sequential, load_model
-from keras.layers import Dense, Activation, Dropout
-from keras.layers import LSTM, GRU, Bidirectional
+from keras.models import Sequential, load_model, Model
+from keras.layers import Dense, Activation, Dropout, Input
+from keras.layers import LSTM, GRU, Bidirectional, concatenate, average
 from keras.layers.normalization import BatchNormalization
 from keras.layers.embeddings import Embedding
 from keras.layers.advanced_activations import PReLU
@@ -9,7 +9,7 @@ from keras.optimizers import Nadam
 from keras.utils.data_utils import get_file
 from keras.callbacks import ModelCheckpoint, ReduceLROnPlateau
 from keras.utils.np_utils import to_categorical
-from keras.metrics import binary_accuracy
+from keras.metrics import binary_accuracy, binary_crossentropy
 import numpy as np
 from numpy.random import randint
 import random
@@ -19,7 +19,6 @@ import pandas as pd
 import theano
 from scipy import sparse
 import os
-from sklearn.metrics import mean_squared_error
 
 #
 # How to fight with nans http://stackoverflow.com/questions/37232782/nan-when-training-regression-net-using-keras-and-theano
@@ -79,9 +78,6 @@ print("max len:", max_len)
 X_exp, y_exp = vectorize(R_exp_seq, 1, max_len, chars)
 X_gen, y_gen = vectorize(R_gen_seq, 0, max_len, chars)
 
-# weights_big   = R_exp_data["Umi.count"][logic_big].reshape(y_big.shape)
-# weights_small = R_exp_data["Umi.count"][logic_small].reshape(y_small.shape)
-
 
 ####################
 # Load the CV data #
@@ -105,18 +101,18 @@ X_val, y_val = vectorize(val_df["CDR3.amino.acid.sequence"], 1, max_len, chars)
 val_Xs.append(X_val)
 val_ys.append(y_val)
 
-val_df = pd.read_table("data/val_4.txt")
-X_val, y_val = vectorize(val_df[[0]], 0, max_len, chars)
+val_df = pd.read_table("data/val_4.txt", header = None)
+X_val, y_val = vectorize(val_df[0], 0, max_len, chars)
 val_Xs.append(X_val)
 val_ys.append(y_val)
 
-val_df = pd.read_table("data/val_5.txt")
-X_val, y_val = vectorize(val_df[[0]], 0, max_len, chars)
+val_df = pd.read_table("data/val_5.txt", header = None)
+X_val, y_val = vectorize(val_df[0], 0, max_len, chars)
 val_Xs.append(X_val)
 val_ys.append(y_val)
 
-val_df = pd.read_table("data/val_67.txt")
-X_val, y_val = vectorize(val_df[[0]], 0, max_len, chars)
+val_df = pd.read_table("data/val_67.txt", header = None)
+X_val, y_val = vectorize(val_df[0], 0, max_len, chars)
 val_Xs.append(X_val)
 val_ys.append(y_val)
 
@@ -139,19 +135,19 @@ if len(sys.argv) > 2:
         print("Loading model:", sys.argv[2])
         model = load_model(sys.argv[2])
     elif sys.argv[2] == "lstm":
-        model.add(LSTM(32, kernel_initializer="he_normal", recurrent_initializer="he_normal", 
+        model.add(LSTM(64, kernel_initializer="he_normal", recurrent_initializer="he_normal", 
                        implementation=2, bias_initializer="he_normal",
                        dropout=.2, recurrent_dropout=.2,
                        unroll=True, input_shape=(max_len, len(chars))))
         model.add(BatchNormalization())
         model.add(PReLU())
         
-        model.add(Dense(32))
+        model.add(Dense(64))
         model.add(BatchNormalization())
         model.add(PReLU())
         model.add(Dropout(.3))
         
-        model.add(Dense(32))
+        model.add(Dense(64))
         model.add(BatchNormalization())
         model.add(PReLU())
         model.add(Dropout(.3))
@@ -159,19 +155,19 @@ if len(sys.argv) > 2:
         model.add(Dense(1, activation = "sigmoid"))
         
     elif sys.argv[2] == "gru":
-        model.add( GRU(32, kernel_initializer="he_normal", recurrent_initializer="he_normal", 
+        model.add( GRU(64, kernel_initializer="he_normal", recurrent_initializer="he_normal", 
                        implementation=2, bias_initializer="he_normal",
                        dropout=.2, recurrent_dropout=.2,
                        unroll=True, input_shape=(max_len, len(chars))))
         model.add(BatchNormalization())
         model.add(PReLU())
         
-        model.add(Dense(32))
+        model.add(Dense(64))
         model.add(BatchNormalization())
         model.add(PReLU())
         model.add(Dropout(.3))
         
-        # model.add(Dense(32))
+        # model.add(Dense(64))
         # model.add(BatchNormalization())
         # model.add(PReLU())
         # model.add(Dropout(.3))
@@ -182,6 +178,30 @@ if len(sys.argv) > 2:
         # model.add(BatchNormalization())
         
         model.add(Dense(1, activation = "sigmoid"))
+        
+    elif sys.argv[2] == "bigru":
+        inp = Input(shape=(max_len, len(chars)))
+        gru_node = lambda x: GRU(64, kernel_initializer="he_normal", recurrent_initializer="he_normal", 
+                                 implementation=2, bias_initializer="he_normal",
+                                 dropout=.2, recurrent_dropout=.2, unroll=True, go_backwards = x)
+        forw = gru_node(False)(inp)
+        forw = BatchNormalization()(forw)
+        forw = PReLU()(forw)
+        
+        back = gru_node(True)(inp)
+        back = BatchNormalization()(back)
+        back = PReLU()(back)
+        
+        merged = average([forw, back])
+        
+        pred = Dense(64)(merged)
+        pred = BatchNormalization()(pred)
+        pred = PReLU()(pred)
+        pred = Dropout(.3)(pred)
+        
+        pred = Dense(1, activation = "sigmoid")(pred)
+        
+        model = Model(inp, pred)
         
     else:
         print("Unknown parameter:", sys.argv[2])
@@ -261,7 +281,7 @@ for epoch in range(epoch_per_iter, EPOCHS+1, 5):
                         verbose=VERBOSE, 
                         initial_epoch=epoch - epoch_per_iter,
                         callbacks = [ModelCheckpoint(filepath = dir_name + "model." + str(epoch % 2) + ".hdf5"), 
-                                     ReduceLROnPlateau(monitor="loss", factor=0.2, patience=3, min_lr=0.0001)])
+                                     ReduceLROnPlateau(monitor="loss", factor=0.2, patience=3, cooldown=1, min_lr=0.0001)])
 
     for key in history.history.keys():
         with open(dir_name + "history." + key + ".txt", "a" if epoch > epoch_per_iter else "w") as hist_file:
@@ -280,9 +300,9 @@ for epoch in range(epoch_per_iter, EPOCHS+1, 5):
     for i, vn in enumerate(val_names):
         y_true = val_ys[i]
         y_pred = model.predict(val_Xs[i])
-        acc_val = model.evaluate(val_Xs[i], val_ys[i], verbose=0)[1]
+        loss_val, acc_val = model.evaluate(val_Xs[i], val_ys[i], verbose=0)
         with open(dir_name + "history.loss.val_" + vn + ".txt", "a" if epoch > epoch_per_iter else "w") as hist_file:
-            hist_file.writelines(str(mean_squared_error(y_true, y_pred)) + "\n")
+            hist_file.writelines(str(loss_val) + "\n")
         with open(dir_name + "history.acc.val_" + vn + ".txt", "a" if epoch > epoch_per_iter else "w") as hist_file:
             hist_file.writelines(str(acc_val) + "\n")
             
