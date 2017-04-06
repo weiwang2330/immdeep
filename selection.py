@@ -199,6 +199,11 @@ if len(sys.argv) > 2:
         pred = PReLU()(pred)
         pred = Dropout(.3)(pred)
         
+        pred = Dense(64)(pred)
+        pred = BatchNormalization()(pred)
+        pred = PReLU()(pred)
+        pred = Dropout(.3)(pred)
+        
         pred = Dense(1, activation = "sigmoid")(pred)
         
         model = Model(inp, pred)
