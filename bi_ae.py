@@ -8,11 +8,11 @@ import pandas as pd
 import os
 import pprint
 
-EPOCHS = 150
+EPOCHS = 30
 #train_size = 5000
 test_size = 5
 
-data = pd.read_table('more.txt')
+data = pd.read_table('all.txt')
 
 maxlen = max(data["cdr3aa"].apply(len))
 
@@ -53,7 +53,7 @@ def devectorization(vecs):
 x_train = vectorization(train)
 x_test = vectorization(test)
 
-dir_name = 'autoencoders' + "/"
+dir_name = 'autoencoders/biae64'
 
 if not os.path.exists(dir_name):
     print("Creating '", dir_name, "'", sep="")
@@ -83,7 +83,7 @@ epoch_per_iter = 5
 for epoch in range(epoch_per_iter, EPOCHS+1, 5):
     history = sequence_autoencoder.fit(x_train, x_train, epochs=epoch, batch_size=256, shuffle=True,
                                        initial_epoch=epoch-epoch_per_iter,
-                                       callbacks=[ModelCheckpoint(filepath = dir_name + "bi_autoencoder." + str(epoch % 5) + ".hdf5")])
+                                       callbacks=[ModelCheckpoint(filepath = dir_name + "model." + str(epoch % 5) + ".hdf5")])
     print(test)
     pprint.pprint(devectorization(sequence_autoencoder.predict(x_test)))
     print(sequence_autoencoder.predict(x_test)[0][0])

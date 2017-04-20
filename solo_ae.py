@@ -1,6 +1,5 @@
-from __future__ import print_function
-
 from keras.layers import Input, LSTM, RepeatVector, Activation
+from keras.layers.wrappers import Bidirectional
 from keras.models import Model
 from keras.callbacks import ModelCheckpoint
 import numpy as np
@@ -9,8 +8,8 @@ import pandas as pd
 import os
 import pprint
 
-EPOCHS = 150
-train_size = 1000
+EPOCHS = 30
+#train_size = 5000
 test_size = 5
 
 data = pd.read_table('all.txt')
@@ -24,12 +23,12 @@ def align(seq):
 
 aligned = data.cdr3aa.apply(align)
 
-# indices_tr = randint(len(aligned), size=train_size)
+#indices_tr = randint(len(aligned), size=train_size)
 indices_t = randint(len(aligned), size=test_size)
 
-# train = aligned[indices_tr]
+#train = aligned[indices_tr]
 test = aligned[indices_t]
-#train = data.drop(data.index[indices])
+train = aligned
 
 chars = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y']
 char_indices = dict((c, i) for i, c in enumerate(chars))
@@ -54,7 +53,7 @@ def devectorization(vecs):
 x_train = vectorization(train)
 x_test = vectorization(test)
 
-dir_name = 'autoencoders' + "/"
+dir_name = "autoencoders/ae64"
 
 if not os.path.exists(dir_name):
     print("Creating '", dir_name, "'", sep="")
@@ -65,6 +64,7 @@ timesteps = maxlen
 input_dim = len(chars)
 
 inputs = Input(shape=(timesteps, input_dim))
+# encoded = Bidirectional(LSTM(latent_dim), merge_mode='sum')(inputs)
 encoded = LSTM(latent_dim)(inputs)
 
 decoded = RepeatVector(timesteps)(encoded)
@@ -83,11 +83,10 @@ epoch_per_iter = 5
 for epoch in range(epoch_per_iter, EPOCHS+1, 5):
     history = sequence_autoencoder.fit(x_train, x_train, epochs=epoch, batch_size=256, shuffle=True,
                                        initial_epoch=epoch-epoch_per_iter,
-                                       callbacks=[ModelCheckpoint(filepath = dir_name + "autoencoder." + str(epoch % 2) + ".hdf5")])
+                                       callbacks=[ModelCheckpoint(filepath = dir_name + "model." + str(epoch % 5) + ".hdf5")])
     print(test)
     pprint.pprint(devectorization(sequence_autoencoder.predict(x_test)))
     print(sequence_autoencoder.predict(x_test)[0][0])
     for key in history.history.keys():
         with open(dir_name + "history." + key + ".txt", "a" if epoch > epoch_per_iter else "w") as hist_file:
             hist_file.writelines("\n".join(map(str, history.history[key])) + "\n")
-
